@@ -24,4 +24,8 @@ RUN chmod u+x /bin/sbt
 # Get SBT to pull base libraries
 RUN sbt info
 
+#change uid and gid  of jenkins to the one of the host system
+usermod -u 106 jenkins
+groupmod -g 112 jenkins
+
 USER jenkins
