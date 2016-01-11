@@ -1,5 +1,8 @@
 FROM jenkins:1.625.3
 
+#jenkins image set user to jenkins to be able to install set back to root
+USER root
+
 # Update for new versions
 ENV SCALA_VERSION 2.11.7
 ENV SBT_VERSION 0.13.8
@@ -20,3 +23,5 @@ RUN chmod u+x /bin/sbt
 
 # Get SBT to pull base libraries
 RUN sbt info
+
+USER jenkins
