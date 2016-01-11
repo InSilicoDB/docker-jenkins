@@ -1,8 +1,5 @@
 FROM jenkins:1.625.3
 
-# Install Git
-RUN apt-get install -y git
-
 # Update for new versions
 ENV SCALA_VERSION 2.11.7
 ENV SBT_VERSION 0.13.8
