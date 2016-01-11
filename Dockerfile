@@ -24,9 +24,8 @@ RUN chmod u+x /bin/sbt
 # Get SBT to pull base libraries
 RUN sbt info
 
-#change uid and gid of jenkins to the one of the host system
+#change uid and gid  of jenkins to the one of the host system
 RUN usermod -u 106 jenkins
 RUN groupmod -g 112 jenkins
 
-COPY start.sh /usr/local/bin/start.sh
-ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/start.sh"]
+USER jenkins
