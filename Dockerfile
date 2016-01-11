@@ -1,4 +1,4 @@
-FROM java:8-jdk
+FROM jenkins:1.625.3
 
 # Update for new versions
 ENV SCALA_VERSION 2.11.7
