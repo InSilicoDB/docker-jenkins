@@ -25,7 +25,7 @@ RUN chmod u+x /bin/sbt
 RUN sbt info
 
 #change uid and gid  of jenkins to the one of the host system
-usermod -u 106 jenkins
-groupmod -g 112 jenkins
+RUN usermod -u 106 jenkins
+RUN groupmod -g 112 jenkins
 
 USER jenkins
