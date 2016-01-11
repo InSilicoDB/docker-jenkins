@@ -19,7 +19,7 @@ ENV PATH ${SCALA_HOME}/bin:$PATH
 RUN curl -O -L https://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/${SBT_VERSION}/sbt-launch.jar
 RUN mv sbt-launch.jar /bin/sbt-launch.jar
 COPY sbt /bin/sbt
-RUN chmod u+x /bin/sbt
+RUN chmod a+x /bin/sbt
 
 # Get SBT to pull base libraries
 RUN sbt info
