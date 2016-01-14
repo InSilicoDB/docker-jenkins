@@ -7,6 +7,13 @@ USER root
 RUN apt-get update
 RUN apt-get -y install mysql-client
 
+#install some libs for running docker in docker
+RUN apt-get -y install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    lxc 
+
 #install Nextflow
 RUN curl -fsSL get.nextflow.io | bash
 RUN mv nextflow /bin/
