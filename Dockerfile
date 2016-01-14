@@ -44,5 +44,7 @@ RUN sbt info
 #change uid and gid  of jenkins to the one of the host system
 RUN usermod -u 106 jenkins
 RUN groupmod -g 112 jenkins
+RUN groupadd -g 111 docker
+RUN usermod -a -G docker jenkins
 
 USER jenkins
