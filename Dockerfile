@@ -4,7 +4,7 @@ FROM jenkins:1.625.3
 USER root
 
 #install mysql client
-RUN apt-get install -y mysql-client
+RUN apt-get -y install mysql-client-5.6
 
 # Update for new versions
 ENV SCALA_VERSION 2.11.7
