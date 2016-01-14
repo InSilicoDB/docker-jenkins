@@ -17,7 +17,7 @@ RUN apt-get -y install \
 #install Nextflow
 RUN curl -fsSL get.nextflow.io | bash
 RUN mv nextflow /bin/
-RUN chmod a+x /bin/nextflow
+RUN chmod a+rx /bin/nextflow
 ENV NEXTFLOW_HOME /bin/nextflow
 
 # Update for new versions
