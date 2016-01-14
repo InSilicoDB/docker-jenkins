@@ -7,6 +7,12 @@ USER root
 RUN apt-get update
 RUN apt-get -y install mysql-client
 
+#install Nextflow
+RUN curl -fsSL get.nextflow.io | bash
+RUN mv nextflow /bin/
+RUN chmod a+x /bin/nextflow
+ENV NEXTFLOW_HOME /bin/nextflow
+
 # Update for new versions
 ENV SCALA_VERSION 2.11.7
 ENV SBT_VERSION 0.13.8
