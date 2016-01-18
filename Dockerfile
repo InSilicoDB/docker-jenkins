@@ -14,11 +14,29 @@ RUN apt-get -y install \
     curl \
     lxc 
 
+
 #install Nextflow
-RUN curl -fsSL get.nextflow.io | bash
-RUN mv nextflow /bin/
-RUN chmod a+rx /bin/nextflow
-ENV NEXTFLOW_HOME /bin/nextflow
+RUN mkdir /home/jenkins
+RUN chown -R jenkins:jenkins /home/jenkins
+RUN curl -o nextflow -fsSL get.nextflow.io
+RUN bash nextflow
+#make the nextflow executable from everywhere by moving it into a dir in the $PATH
+RUN mv nextflow /usr/local/bin/
+RUN chmod a+rx /usr/local/bin/nextflow
+#remove laucher file with classpath referencing the root home
+RUN rm -r /tmp/nxf-launcher*
+# move roots nextflow to jenkins writable dir
+RUN mv ~/.nextflow /home/jenkins/.nextflow
+RUN chown -R jenkins:jenkins /home/jenkins/.nextflow
+
+ENV NEXTFLOW_HOME /usr/local/bin/nextflow
+RUN touch /usr/local/bin/temp.sh
+RUN chmod a+rwx /usr/local/bin/temp.sh
+RUN head -n 3 /usr/local/bin/jenkins.sh > /usr/local/bin/temp.sh
+RUN echo "mv -n /home/jenkins/.nextflow $JENKINS_HOME" >> /usr/local/bin/temp.sh
+RUN tail -n $(cat /usr/local/bin/jenkins.sh|wc -l) /usr/local/bin/jenkins.sh >> /usr/local/bin/temp.sh
+RUN mv /usr/local/bin/temp.sh /usr/local/bin/jenkins.sh
+RUN chmod a+rx /usr/local/bin/jenkins.sh
 
 # Update for new versions
 ENV SCALA_VERSION 2.11.7
